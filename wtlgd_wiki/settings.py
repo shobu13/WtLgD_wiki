@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -137,7 +138,29 @@ MEDIA_ROOT = os.path.join("/var/www/WtLgD_wiki", "media")
 STATIC_ROOT = os.path.join("/var/www/WtLgD_wiki", "static")
 # MEDIA_ROOT = os.path.join("media")
 # STATIC_ROOT = os.path.join("static")
+
 # django-wiki
 SITE_ID = 1
 WIKI_ACCOUNT_HANDLING = True
 WIKI_ACCOUNT_SIGNUP_ALLOWED = True
+
+
+def can_write(article, user):
+    """
+    une fonction servant a tester si on utilisateur a le droit d'écriture.
+    :param article: wiki.models.Article
+    :param user: django.contrib.auth.models.User
+    :return:
+    """
+    from django.contrib.auth.models import Group
+    from django.contrib.auth.models import User
+    from wiki.models import Article
+    assert isinstance(user, User)
+    assert isinstance(article, Article)
+    if user.groups.name == 'contributeur' or user.is_staff or user.is_superuser or article.owner == user:
+        return True
+    else:
+        return False
+
+
+WIKI_CAN_WRITE = can_write
