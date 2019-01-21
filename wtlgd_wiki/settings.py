@@ -133,10 +133,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-# MEDIA_ROOT = os.path.join("/var/www/DCG_API", "media")
-# STATIC_ROOT = os.path.join("/var/www/DCG_API", "static")
-MEDIA_ROOT = os.path.join("media")
-STATIC_ROOT = os.path.join("static")
+MEDIA_ROOT = os.path.join("/var/www/WtLgD_wiki", "media")
+STATIC_ROOT = os.path.join("/var/www/WtLgD_wiki", "static")
+# MEDIA_ROOT = os.path.join("media")
+# STATIC_ROOT = os.path.join("static")
 # django-wiki
 SITE_ID = 1
 WIKI_ACCOUNT_HANDLING = True
